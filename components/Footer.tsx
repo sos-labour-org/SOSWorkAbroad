@@ -6,6 +6,7 @@ import {
   FaTiktok,
   FaWhatsapp,
   FaXTwitter,
+   FaYoutube,
 } from "react-icons/fa6";
 import { siteConfig } from "@/lib/site-config";
 
@@ -14,6 +15,7 @@ const socials = [
   { label: "Instagram", href: siteConfig.social.instagram, icon: FaInstagram },
   { label: "X", href: siteConfig.social.x, icon: FaXTwitter },
   { label: "TikTok", href: siteConfig.social.tiktok, icon: FaTiktok },
+  { label: "YouTube", href: siteConfig.social.youtube, icon: FaYoutube },
 ];
 
 export default function Footer() {
@@ -87,8 +89,16 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-border py-5 text-center text-sm text-muted-foreground">
-        © 2026 {siteConfig.name}. All rights reserved.
+            <div className="border-t border-border py-5 text-center text-sm text-muted-foreground">
+        <p>© 2026 {siteConfig.name}. All rights reserved.</p>
+        <p className="mt-1">
+          <Link
+            href="/terms"
+            className="inline-block py-2 underline-offset-4 hover:text-primary hover:underline"
+          >
+            Terms and Conditions
+          </Link>
+        </p>
       </div>
     </footer>
   );
