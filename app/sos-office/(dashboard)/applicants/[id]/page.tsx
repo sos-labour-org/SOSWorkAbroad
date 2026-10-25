@@ -86,7 +86,7 @@ export default async function ApplicantDetailPage({
   );
 
   return (
-    <div className="space-y-6 max-w-5xl">
+    <div className="space-y-6 w-full">
       {/* Top Navigation */}
       <div>
         <Link
@@ -301,10 +301,10 @@ export default async function ApplicantDetailPage({
               return (
                 <div
                   key={dt.type}
-                  className={`rounded-xl border p-4 flex flex-col justify-between transition-all ${
+                  className={`rounded-xl border p-4 flex flex-col justify-between transition-colors ${
                     uploaded
-                      ? "border-emerald-300 bg-emerald-50/20"
-                      : "border-border bg-muted/20 opacity-70"
+                      ? "border-slate-200 bg-white shadow-2xs"
+                      : "border-dashed border-slate-300 bg-slate-50/50"
                   }`}
                 >
                   <div>
@@ -313,26 +313,26 @@ export default async function ApplicantDetailPage({
                         {dt.label}
                       </span>
                       {uploaded ? (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-medium text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">
-                          <CheckCircle2 className="size-3" />
+                        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md">
+                          <CheckCircle2 className="size-3 text-emerald-600" />
                           <span>Uploaded</span>
                         </span>
                       ) : (
-                        <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                        <span className="text-[11px] text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-md">
                           Missing
                         </span>
                       )}
                     </div>
-                    <p className="text-[11px] text-muted-foreground mt-1">
+                    <p className="text-[11px] text-muted-foreground mt-1.5 leading-relaxed">
                       {dt.description}
                     </p>
 
                     {uploaded ? (
-                      <div className="mt-3 pt-3 border-t border-border/50 text-[11px] text-muted-foreground space-y-1">
-                        <p className="truncate font-mono text-[10px]">
+                      <div className="mt-3 pt-3 border-t border-slate-100 text-[11px] text-muted-foreground space-y-1">
+                        <p className="truncate font-mono text-[10px] text-slate-600">
                           {uploaded.original_name}
                         </p>
-                        <p>{formatBytes(uploaded.size_bytes)}</p>
+                        <p className="text-slate-500">{formatBytes(uploaded.size_bytes)}</p>
                       </div>
                     ) : null}
                   </div>
@@ -343,7 +343,7 @@ export default async function ApplicantDetailPage({
                         href={uploaded.signedUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex h-8 flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 text-xs font-semibold text-on-primary hover:bg-primary/90 transition-colors"
+                        className="inline-flex h-8 flex-1 items-center justify-center gap-1.5 rounded-md bg-primary px-3 text-xs font-medium text-white hover:bg-primary/90 transition-colors shadow-2xs"
                       >
                         <ExternalLink className="size-3" />
                         <span>View File</span>
@@ -351,7 +351,7 @@ export default async function ApplicantDetailPage({
                       <a
                         href={uploaded.signedUrl}
                         download={uploaded.original_name}
-                        className="inline-flex h-8 size-8 items-center justify-center rounded-lg border border-border bg-white hover:bg-muted text-muted-foreground transition-colors"
+                        className="inline-flex h-8 size-8 items-center justify-center rounded-md border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors shadow-2xs"
                         title="Download file"
                       >
                         <Download className="size-3.5" />

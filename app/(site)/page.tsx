@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Flyers from "@/components/Flyers";
+import EuropeBanner from "@/components/EuropeBanner";
 import Offers from "@/components/Offers";
 import JobsBanner from "@/components/JobsBanner";
 import HowItWorks from "@/components/HowItWorks";
@@ -12,6 +13,7 @@ export default function Home() {
     <main>
       <Hero />
       <Flyers />
+      <EuropeBanner />
       <Offers />
       <JobsBanner />
       <HowItWorks />

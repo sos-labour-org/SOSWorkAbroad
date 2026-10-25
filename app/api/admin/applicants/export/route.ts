@@ -19,7 +19,8 @@ export async function GET(req: NextRequest) {
     .select(
       "reference, full_name, destination, phone, whatsapp, email, region, education, status, created_at"
     )
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .range(0, 9999);
 
   if (route && (route === "uae" || route === "europe")) {
     query = query.eq("destination", route);
@@ -53,8 +54,12 @@ export async function GET(req: NextRequest) {
 
   const escapeCSV = (val: string | null | undefined) => {
     if (!val) return '""';
-    const s = String(val).replace(/"/g, '""');
-    return `"${s}"`;
+     let s = String(val);
+  // Stop spreadsheet programs from running text as a formula
+  if (/^[=@\t\r]/.test(s) || (/^[+-]/.test(s) && !/^[+-]?[\d\s]+$/.test(s))) {
+    s = `'${s}`;
+  }
+  return `"${s.replace(/"/g, '""')}"`;
   };
 
   const rows = data.map((a) => [

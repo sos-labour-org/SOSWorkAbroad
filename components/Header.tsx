@@ -31,7 +31,7 @@ export default function Header() {
           href="/#apply"
           className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90 md:inline-block"
         >
-          Register Free
+          Free Registration
         </Link>
 
         <button
@@ -65,7 +65,7 @@ export default function Header() {
             onClick={() => setOpen(false)}
             className="mt-2 block rounded-full bg-primary py-3 text-center font-semibold text-on-primary"
           >
-            Register Free
+            Free Registration
           </Link>
         </nav>
       )}

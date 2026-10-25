@@ -28,7 +28,7 @@ export function AppHeader() {
         <AppBreadcrumbs page={activeItem} />
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-xs text-muted-foreground font-medium bg-muted px-2.5 py-1 rounded-full">
+        <span className="text-xs text-slate-600 font-medium bg-slate-100 border border-slate-200/80 px-2.5 py-1 rounded-md">
           SOS Office Admin
         </span>
       </div>

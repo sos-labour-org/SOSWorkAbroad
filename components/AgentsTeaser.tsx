@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Share2, Users, Wallet } from "lucide-react";
+import { ArrowRight, Share2, Users } from "lucide-react";
 
 const points = [
   {
@@ -11,11 +11,6 @@ const points = [
     icon: Users,
     title: "They register",
     text: "Everyone who registers through your link is tracked to you.",
-  },
-  {
-    icon: Wallet,
-    title: "You get paid",
-    text: "Receive payment for the people you bring in. Full details are shared when you apply.",
   },
 ];
 
@@ -31,8 +26,8 @@ export default function AgentsTeaser() {
             Become an SOS agent
           </h2>
           <p className="mt-4 text-lg text-muted-foreground md:text-xl">
-            Know people who want to work abroad? Join our agent network, help
-            them register, and get paid for every person you bring in.
+            Know people who want to work abroad? Join our agent network and
+            help them register.
           </p>
           <Link
             href="/agents"
