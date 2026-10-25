@@ -3,7 +3,7 @@ import { UserPlus, Upload, CreditCard, Plane } from "lucide-react";
 const steps = [
   {
     icon: UserPlus,
-    title: "Register free",
+    title: "Register (free)",
     text: "Choose UAE or Europe and fill in your details. Registration costs nothing.",
   },
   {

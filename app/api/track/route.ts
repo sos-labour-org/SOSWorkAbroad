@@ -31,26 +31,46 @@ export async function POST(req: NextRequest) {
       return new NextResponse(null, { status: 204 });
     }
 
-    const page = body.page.trim();
-    // Do not track admin routes
-    if (page.startsWith("/sos-office")) {
+    const page = body.page.trim().split(/[?#]/)[0];
+    if (
+      !/^\/[A-Za-z0-9/_-]{0,200}$/.test(page) ||
+      page.startsWith("/sos-office")
+    ) {
+      return new NextResponse(null, { status: 204 });
+    }
+
+    // Ignore requests that don't come from our own site
+    const origin = req.headers.get("origin");
+    if (origin && new URL(origin).host !== req.nextUrl.host) {
       return new NextResponse(null, { status: 204 });
     }
 
     const device = parseDevice(userAgent);
-    const referrer = body.referrer ? String(body.referrer).slice(0, 500) : null;
-    const visitorId = body.visitorId
-      ? String(body.visitorId).slice(0, 100)
-      : "anon";
+        // Keep only the site name of the referrer, e.g. facebook.com
+    let referrer: string | null = null;
+    try {
+      const host = new URL(String(body.referrer)).hostname;
+      referrer =
+        host && host !== req.nextUrl.hostname ? host.slice(0, 200) : null;
+    } catch {
+      // no referrer
+    }
+
+    // Must look like a real visitor id, otherwise skip it
+    const visitorId = String(body.visitorId ?? "");
+    if (!/^[A-Za-z0-9-]{8,64}$/.test(visitorId)) {
+      return new NextResponse(null, { status: 204 });
+    }
 
     const supabase = createAdminClient();
 
-    await supabase.from("page_views").insert({
-      page: page.slice(0, 255),
+        const { error } = await supabase.from("page_views").insert({
+      page,
       referrer,
       device,
       visitor_id: visitorId,
     });
+    if (error) console.error("page_views insert failed:", error.message);
 
     return new NextResponse(null, { status: 204 });
   } catch {

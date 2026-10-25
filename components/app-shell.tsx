@@ -5,14 +5,15 @@ import { AppSidebar } from "@/components/app-sidebar";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="overflow-hidden">
-			<SidebarProvider className="relative mx-auto h-svh w-full max-w-7xl lg:border-x border-border">
-				<FullWidthDivider className="top-14 z-60 -translate-y-px" />
+		<div className="min-h-svh w-full bg-slate-50/70">
+			<SidebarProvider className="h-svh w-full">
 				<AppSidebar />
-				<SidebarInset>
+				<SidebarInset className="bg-slate-50/70">
 					<AppHeader />
-					<div className="flex flex-1 flex-col gap-4 overflow-y-auto p-4 md:p-6">
-						{children}
+					<div className="flex flex-1 flex-col gap-6 overflow-y-auto p-4 md:p-6 lg:p-8">
+						<div className="w-full">
+							{children}
+						</div>
 					</div>
 				</SidebarInset>
 			</SidebarProvider>

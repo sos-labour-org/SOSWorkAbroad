@@ -33,7 +33,7 @@ export default function JobsBanner() {
             rel="noopener noreferrer"
             className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-on-primary transition-opacity hover:opacity-90"
           >
-            Check some job offers
+            Check out some job offers
             <ArrowUpRight size={20} aria-hidden="true" />
             <span className="sr-only">(opens in a new tab)</span>
           </a>
