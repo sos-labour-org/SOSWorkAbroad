@@ -17,6 +17,7 @@ export const siteConfig = {
     instagram: "#",
     x: "#",
     tiktok: "#",
+    youtube: "#",
   },
 
   nav: [
