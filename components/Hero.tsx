@@ -1,26 +1,35 @@
 import Link from "next/link";
-import { ArrowRight, CalendarDays } from "lucide-react";
-import { siteConfig } from "@/lib/site-config";
+import { ArrowRight } from "lucide-react";
+
 
 export default function Hero() {
   return (
     <section className="bg-muted">
       <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
-        <p className="inline-flex items-center gap-2 rounded-full bg-highlight px-4 py-1.5 text-sm font-semibold text-on-highlight">
-          <CalendarDays size={16} aria-hidden="true" />
-         UAE first batch leaving {siteConfig.firstBatch.label}
-        </p>
 
-        <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight md:text-6xl">
-          Transfer to <span className="text-primary">Transform</span>
+                <h1
+                    className="animate-fade-up max-w-3xl text-5xl font-bold uppercase leading-tight md:text-7xl"
+          style={{ animationDelay: "150ms" }}
+        >
+          Work <span className="text-primary">Abroad</span>
+          <span className="mt-2 block text-2xl font-semibold normal-case text-foreground md:text-4xl">
+            Transfer to <span className="text-primary">Transform</span>
+          </span>
         </h1>
 
-        <p className="mt-4 max-w-xl text-lg text-muted-foreground">
+         <p
+          className="animate-fade-up mt-4 max-w-xl text-lg text-muted-foreground"
+          style={{ animationDelay: "300ms" }}
+        >
           Free recruitment for all Africans. Register today and take the first
           step to working abroad.
         </p>
 
-        <div id="apply" className="mt-8 flex scroll-mt-24 flex-col gap-3 sm:flex-row">
+                <div
+          id="apply"
+          className="animate-fade-up mt-8 flex scroll-mt-24 flex-col gap-3 sm:flex-row"
+          style={{ animationDelay: "450ms" }}
+        >
           <Link
             href="/apply/uae"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-on-primary transition-opacity hover:opacity-90"
@@ -37,7 +46,11 @@ export default function Hero() {
           </Link>
         </div>
 
-        <p className="mt-6 max-w-xl text-sm text-muted-foreground">
+                <p
+          className="animate-fade-up mt-6 max-w-xl text-sm text-muted-foreground"
+          style={{ animationDelay: "600ms" }}
+        >
+          Recruitment is free.
           Recruitment is free. Just bring your passport, a CV with your photo,
           and your school certificate (JHS and above).
         </p>
