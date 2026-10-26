@@ -8,9 +8,9 @@ export const siteConfig = {
 
   // Placeholders until your boss sends the real details
   contact: {
-    phone: "+233 XX XXX XXXX",
+    phone: "+233 56 111 1165",
     whatsapp: "233XXXXXXXXX",
-    email: "info@example.com",
+    email: "info@nekotechcenter.org",
   },
   social: {
     facebook: "#",
