@@ -7,19 +7,36 @@ import HowItWorks from "@/components/HowItWorks";
 import Requirements from "@/components/Requirements";
 import AgentsTeaser from "@/components/AgentsTeaser";
 import Faq from "@/components/Faq";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <Flyers />
-      <Offers />
-      <EuropeBanner />
-      <JobsBanner />
-      <HowItWorks />
-      <Requirements />
-      <AgentsTeaser />
-      <Faq />
+      <Reveal>
+        <Flyers />
+      </Reveal>
+      <Reveal>
+        <Offers />
+      </Reveal>
+      <Reveal>
+        <EuropeBanner />
+      </Reveal>
+      <Reveal>
+        <JobsBanner />
+      </Reveal>
+      <Reveal>
+        <HowItWorks />
+      </Reveal>
+      <Reveal>
+        <Requirements />
+      </Reveal>
+      <Reveal>
+        <AgentsTeaser />
+      </Reveal>
+      <Reveal>
+        <Faq />
+      </Reveal>
     </main>
   );
 }
