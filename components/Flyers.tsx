@@ -17,7 +17,8 @@ export default function Flyers() {
   const items = flyers.length > 0 ? flyers : isDev ? placeholders : [];
 
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
+   const [paused, setPaused] = useState(false);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     if (paused || items.length < 2) return;
@@ -72,10 +73,31 @@ export default function Flyers() {
         </div>
 
                 {/* Phone: one flyer at a time, fading every 5 seconds */}
-        <div
-          className="mt-8 sm:hidden"
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
+                <div
+          className="mt-8 touch-pan-y sm:hidden"
+          onTouchStart={(e) => {
+            touchStart.current = {
+              x: e.touches[0].clientX,
+              y: e.touches[0].clientY,
+            };
+            setPaused(true);
+          }}
+          onTouchEnd={(e) => {
+            const start = touchStart.current;
+            touchStart.current = null;
+            setPaused(false);
+            if (!start) return;
+
+            const dx = e.changedTouches[0].clientX - start.x;
+            const dy = e.changedTouches[0].clientY - start.y;
+
+            // Ignore taps and mostly-vertical movement (page scrolling)
+            if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+
+            setCurrent((c) =>
+              dx < 0 ? (c + 1) % items.length : (c - 1 + items.length) % items.length
+            );
+          }}
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-muted">
             {items.map((flyer, i) => (
