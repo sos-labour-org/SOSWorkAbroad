@@ -25,7 +25,6 @@ function StatCard({
   value,
   note,
   icon: Icon,
-  highlight,
 }: {
   label: string;
   value: string | number;
@@ -34,27 +33,13 @@ function StatCard({
   highlight?: boolean;
 }) {
   return (
-    <Card className="shadow-xs">
+    <Card className="shadow-2xs">
       <CardContent className="p-5">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-sm font-medium text-muted-foreground">{label}</p>
-          {Icon ? (
-            <div
-              className={`flex size-8 shrink-0 items-center justify-center rounded-lg ${
-                highlight
-                  ? "bg-primary/10 text-primary"
-                  : "bg-muted text-muted-foreground"
-              }`}
-            >
-              <Icon className="size-4" />
-            </div>
-          ) : null}
+        <div className="flex items-center justify-between text-muted-foreground">
+          <p className="text-xs font-medium">{label}</p>
+          {Icon ? <Icon className="size-4 text-slate-400" /> : null}
         </div>
-        <p
-          className={`mt-2 text-2xl font-bold tracking-tight ${
-            highlight ? "text-primary" : "text-foreground"
-          }`}
-        >
+        <p className="mt-2 text-2xl font-bold tracking-tight text-foreground">
           {value}
         </p>
         {note ? (
