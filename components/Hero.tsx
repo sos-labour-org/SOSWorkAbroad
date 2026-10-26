@@ -50,7 +50,6 @@ export default function Hero() {
           className="animate-fade-up mt-6 max-w-xl text-sm text-muted-foreground"
           style={{ animationDelay: "600ms" }}
         >
-          Recruitment is free.
           Recruitment is free. Just bring your passport, a CV with your photo,
           and your school certificate (JHS and above).
         </p>

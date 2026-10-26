@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { flyers, type Flyer } from "@/lib/flyers";
 
@@ -15,6 +15,20 @@ export default function Flyers() {
 
   const isDev = process.env.NODE_ENV === "development";
   const items = flyers.length > 0 ? flyers : isDev ? placeholders : [];
+
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || items.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const id = setInterval(() => {
+      setCurrent((c) => (c + 1) % items.length);
+    }, 5000);
+
+    return () => clearInterval(id);
+  }, [paused, items.length]);
 
   if (items.length === 0) return null;
 
@@ -57,12 +71,65 @@ export default function Flyers() {
           </div>
         </div>
 
+                {/* Phone: one flyer at a time, fading every 5 seconds */}
+        <div
+          className="mt-8 sm:hidden"
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+        >
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-muted">
+            {items.map((flyer, i) => (
+              <div
+                key={flyer.src || i}
+                aria-hidden={i !== current}
+                className={`absolute inset-0 transition-opacity duration-700 ${
+                  i === current ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                {flyer.src ? (
+                  <Image
+                    src={flyer.src}
+                    alt={flyer.alt}
+                    fill
+                    sizes="100vw"
+                    className="object-contain"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center p-6 text-center text-muted-foreground">
+                    Flyer goes here
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-3 flex justify-center">
+            {items.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setCurrent(i)}
+                aria-label={`Show flyer ${i + 1}`}
+                aria-current={i === current}
+                className="flex h-11 w-8 items-center justify-center"
+              >
+                <span
+                  className={`h-2.5 rounded-full transition-all ${
+                    i === current ? "w-6 bg-primary" : "w-2.5 bg-primary/30"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Tablet and desktop: sideways scroller */}
         <div
           ref={track}
           role="region"
           aria-label="Job flyers, scroll sideways"
           tabIndex={0}
-          className="mt-8 flex snap-x snap-mandatory scroll-smooth gap-4 overflow-x-auto pb-4"
+          className="mt-8 hidden snap-x snap-mandatory scroll-smooth gap-4 overflow-x-auto pb-4 sm:flex"
         >
           {items.map((flyer, i) => (
             <div
