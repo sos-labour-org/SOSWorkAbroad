@@ -35,12 +35,12 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link
-          href="/#apply"
+                <a
+          href="/#packages"
           className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90 md:inline-block"
         >
           Free Registration
-        </Link>
+        </a>
 
         <button
           type="button"
@@ -68,13 +68,13 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/#apply"
+                    <a
+            href="/#packages"
             onClick={() => setOpen(false)}
             className="mt-2 block rounded-full bg-primary py-3 text-center font-semibold text-on-primary"
           >
             Free Registration
-          </Link>
+          </a>
         </nav>
       )}
     </header>

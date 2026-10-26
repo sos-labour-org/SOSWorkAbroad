@@ -33,7 +33,7 @@ export default function Flyers() {
   Work in the UAE: first batch enrolling now
 </h2>
 <p className="mt-2 max-w-xl text-muted-foreground">
-  Everything you need to travel is included. Swipe to see how it works.
+  Everything you need to travel is included.
 </p>
           </div>
 
