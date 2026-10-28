@@ -50,8 +50,13 @@ export function VisitorChart({ data }: { data: DailyVisitorPoint[] }) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="h-64 w-full">
-          <ResponsiveContainer width="100%" height="100%">
+                <div className="h-64 w-full min-w-0">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minWidth={0}
+            initialDimension={{ width: 600, height: 256 }}
+          >
             <AreaChart
               data={data}
               margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
