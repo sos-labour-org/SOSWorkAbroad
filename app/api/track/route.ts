@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
 
     // Must look like a real visitor id, otherwise skip it
     const visitorId = String(body.visitorId ?? "");
-    if (!/^[A-Za-z0-9-]{8,64}$/.test(visitorId)) {
+        if (!/^[A-Za-z0-9_-]{8,64}$/.test(visitorId)) {
       return new NextResponse(null, { status: 204 });
     }
 

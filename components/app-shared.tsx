@@ -5,6 +5,7 @@ import {
   UserCheck,
   Mail,
   Globe,
+    ShieldCheck,
 } from "lucide-react";
 
 export type SidebarNavItem = {
@@ -39,10 +40,15 @@ export const navGroups: SidebarNavGroup[] = [
         url: "/sos-office/agents",
         icon: <UserCheck className="size-4" />,
       },
-      {
+     {
         title: "Messages",
         url: "/sos-office/messages",
         icon: <Mail className="size-4" />,
+      },
+      {
+        title: "Admins",
+        url: "/sos-office/admins",
+        icon: <ShieldCheck className="size-4" />,
       },
     ],
   },
