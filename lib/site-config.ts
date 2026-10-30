@@ -8,16 +8,16 @@ export const siteConfig = {
 
   // Placeholders until your boss sends the real details
   contact: {
-    phone: "+233 56 111 1165",
-    whatsapp: "233XXXXXXXXX",
+    phone: "+1 (940) 977-1707",
+    whatsapp: "+1 (940) 977-1707",
     email: "info@nekotechcenter.org",
   },
   social: {
-    facebook: "#",
-    instagram: "#",
-    x: "#",
-    tiktok: "#",
-    youtube: "#",
+    facebook: "SOS Work Abroad on Facebook",
+    instagram: "@sosworkabroad_official",
+    x: "@SOSWorkAbroad_7",
+    tiktok: "@sosworkabroad_official",
+    youtube: "SOS Work Abroad on YouTube",
   },
 
   nav: [
