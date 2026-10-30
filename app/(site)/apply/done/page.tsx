@@ -7,15 +7,34 @@ import { hasPaid, requireApplicant } from "@/lib/apply-guard";
 import { siteConfig } from "@/lib/site-config";
 import Progress from "../Progress";
 import ReferenceCard from "../ReferenceCard";
+import PaymentConfirming from "./PaymentConfirming";
 
 export const metadata: Metadata = {
   title: "Application complete | SOS Work Abroad",
   robots: { index: false },
 };
 
-async function DoneContent() {
+async function DoneContent({
+  searchParams,
+}: {
+  searchParams: Promise<{ reference?: string; trxref?: string }>;
+}) {
   const applicant = await requireApplicant();
-  if (!hasPaid(applicant.status)) redirect("/apply/payment");
+  const { reference, trxref } = await searchParams;
+
+  if (!hasPaid(applicant.status)) {
+    // Just came back from the payment page: wait for the confirmation
+    if (reference || trxref) {
+      return (
+        <main className="bg-muted">
+          <div className="mx-auto max-w-3xl px-4 py-10 md:py-14">
+            <PaymentConfirming />
+          </div>
+        </main>
+      );
+    }
+    redirect("/apply/payment");
+  }
 
   const next = [
     "We confirm your payment and your documents.",
@@ -75,12 +94,16 @@ async function DoneContent() {
   );
 }
 
-export default function DonePage() {
+export default function DonePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ reference?: string; trxref?: string }>;
+}) {
   return (
     <Suspense
       fallback={<p className="p-8 text-center">Loading your application...</p>}
     >
-      <DoneContent />
+      <DoneContent searchParams={searchParams} />
     </Suspense>
   );
 }
