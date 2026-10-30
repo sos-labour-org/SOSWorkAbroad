@@ -15,7 +15,7 @@ const channels = [
     icon: Phone,
     label: "Call us",
     value: siteConfig.contact.phone,
-    href: `tel:${siteConfig.contact.phone.replace(/\s/g, "")}`,
+    href: `tel:${siteConfig.contact.phone.replace(/[^\d+]/g, "")}`,
     external: false,
   },
   {
